@@ -20,83 +20,54 @@
         }
 
         body {
-            background-image: linear-gradient(135deg, #3d96ef, rgb(213, 255, 212), rgb(196, 174, 156));
+            background-image: linear-gradient(135deg, #58ef3d, rgb(96, 81, 232), rgb(187, 33, 192));
             background-attachment: fixed;
+            color: #fff;
         }
 
-        section {
-            height: 100vh;
+        h1 {
+            text-shadow: 0px 0px 30px rgba(0, 0, 0, 1)
+        }
+
+        main {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-weight: 100;
-            padding: 0 8rem;
-            text-align: center;
+            height: 100%
         }
 
-        section h1 {
-            font-size: 4rem;
-            margin: 0 1rem;
+        a {
+            display: inline-flex;
+            background: #fff;
+            width: 8rem;
+            height: 8rem;
+            margin: 0.325rem;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: rgb(137, 48, 137);
+            border-radius: 1rem;
+            transition: all .325s ease;
         }
 
-        section p {
-            font-size: 2rem;
-            margin: 0 1rem;
-        }
-
-        section h2 {
-            font-size: 6rem;
-            font-weight: inherit;
-            white-space: nowrap;
+        a:hover {
+            box-shadow: 0 0 2rem rgba(0, 0, 0, .4);
+            transform: translateY(-0.625rem)
         }
     </style>
 </head>
 
 <body>
-    <section>
-        <h1>ScrollMagic tryout</h1>
-        <p>Animating font-weight and letter-spacing based on scroll position</p>
-    </section>
-    <section>
-        <h2>Section #1</h2>
-    </section>
-    <section>
-        <h2>Section #2</h2>
-    </section>
-    <section>
-        <h2>Section #3</h2>
-    </section>
-    <section>
-        <h2>Section #4</h2>
-    </section>
-    <section>
-        <h2>Section #5</h2>
-    </section>
-    <section>
-        <h2>Section #6</h2>
-    </section>
-    <section>
-        <h2>Section #7</h2>
-    </section>
-    <section>
-        <h2>Section #8</h2>
-    </section>
-    <section>
-        <h2>Section #9</h2>
-    </section>
-    <section>
-        <h2>Section #10</h2>
-    </section>
-    <section>
-        <h2>Section #11</h2>
-    </section>
-    <section>
-        <h2>Section #12</h2>
-    </section>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
-    <script src="./js/script.js"></script>
+    <main>
+        <h1>Creative Playground</h1>
+        <div>
+            <a href="./animejs.html">
+                Anime.js
+            </a>
+            <a href="./scrollmagic.html">ScrollMagic.js</a>
+        </div>
+    </main>
 </body>
 
 </html>
