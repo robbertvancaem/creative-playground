@@ -8,6 +8,7 @@
     <style type="text/css">
         :root {
             --blob-color: #fa9acf;
+            --blob-dark: #c0488a;
         }
 
         html,
@@ -23,10 +24,14 @@
             background-image: linear-gradient(to bottom right, rgb(181, 255, 129), rgb(115, 140, 206));
             background-attachment: fixed;
             color: #ff65ba;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         svg {
-            width: 48rem
+            width: 48rem;
+            height: 38rem;
         }
     </style>
     <script src="./js/anime.min.js"></script>
@@ -34,23 +39,58 @@
 
 <body>
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <path fill="var(--blob-color)"
-            d="M45.8,-59.3C59.7,-53,71.6,-40,76.4,-24.9C81.2,-9.8,79,7.6,71,20.3C63.1,33,49.4,41.1,36.6,53.1C23.8,65.1,11.9,81,-0.9,82.3C-13.7,83.5,-27.3,70,-39.3,57.7C-51.3,45.4,-61.5,34.4,-60.8,23C-60,11.6,-48.2,-0.1,-41.1,-10.7C-34,-21.3,-31.7,-30.9,-25.6,-39.7C-19.6,-48.6,-9.8,-56.8,3.1,-61C16,-65.3,31.9,-65.6,45.8,-59.3Z"
-            transform="translate(100 100)" />
+        <defs>
+            <filter id="shadow">
+                <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="var(--blob-dark)" />
+            </filter>
+            <linearGradient id="GradientBG" x1="0%" x2="0%" y1="0%" y2="100%">
+                <stop offset="30%" style="stop-color:var(--blob-color); stop-opacity: 1" />
+                <stop offset="100%" style="stop-color:var(--blob-color); stop-opacity: 0.3" />
+            </linearGradient>
+        </defs>
     </svg>
     <script type="text/javascript">
         // const blob_1 = { value: "M45.8,-59.3C59.7,-53,71.6,-40,76.4,-24.9C81.2,-9.8,79,7.6,71,20.3C63.1,33,49.4,41.1,36.6,53.1C23.8,65.1,11.9,81,-0.9,82.3C-13.7,83.5,-27.3,70,-39.3,57.7C-51.3,45.4,-61.5,34.4,-60.8,23C-60,11.6,-48.2,-0.1,-41.1,-10.7C-34,-21.3,-31.7,-30.9,-25.6,-39.7C-19.6,-48.6,-9.8,-56.8,3.1,-61C16,-65.3,31.9,-65.6,45.8,-59.3Z" }
         const blob_2 = { value: "M41.9,-57.3C56.6,-47,72.5,-37.8,73.7,-25.9C74.9,-13.9,61.6,0.9,53.6,15C45.7,29.1,43.2,42.6,35.2,48.6C27.2,54.6,13.6,53.2,0.5,52.5C-12.7,51.9,-25.4,52.2,-34.7,46.6C-44,41,-50,29.6,-58.4,16.1C-66.8,2.6,-77.6,-13.1,-74.4,-24.6C-71.2,-36.1,-54.1,-43.5,-39.4,-53.8C-24.6,-64.2,-12.3,-77.4,0.6,-78.3C13.6,-79.2,27.2,-67.7,41.9,-57.3Z" }
         const blobPaths = [blob_2]
+        const NUM_OF_POINTS = 6;
+        const WIDTH = 200;
+        const HEIGHT = 200;
+        let NUM_OF_BLOBS = 0;
 
-        anime({
-            targets: 'svg path',
-            d: blobPaths,
-            easing: 'spring(1, 100, 5, 10)',
-            duration: 2000,
-            direction: 'alternate',
-            loop: true
-        })
+        function renderBlob(blob) {
+            const svg = document.createElement('svg')
+            svg.setAttribute('viewBox', `0 0 ${WIDTH} ${HEIGHT}`)
+            svg.setAttribute('xmlns', "http://www.w3.org/2000/svg")
+            svg.id = `blob_${NUM_OF_BLOBS}`
+            svg.innerHTML = `<path
+                    fill="url(#GradientBG)"
+                    filter="url(#shadow)"
+                    d="M45.8,-59.3C59.7,-53,71.6,-40,76.4,-24.9C81.2,-9.8,79,7.6,71,20.3C63.1,33,49.4,41.1,36.6,53.1C23.8,65.1,11.9,81,-0.9,82.3C-13.7,83.5,-27.3,70,-39.3,57.7C-51.3,45.4,-61.5,34.4,-60.8,23C-60,11.6,-48.2,-0.1,-41.1,-10.7C-34,-21.3,-31.7,-30.9,-25.6,-39.7C-19.6,-48.6,-9.8,-56.8,3.1,-61C16,-65.3,31.9,-65.6,45.8,-59.3Z"
+                    transform="translate(100 100)" />`
+
+            document.body.appendChild(svg)
+
+            // attach animations
+            // anime({
+            //     targets: `#${svg.id} path`,
+            //     d: blobPaths,
+            //     easing: 'easeInOutCubic',
+            //     duration: 500,
+            //     direction: 'alternate',
+            //     loop: true
+            // })
+
+            NUM_OF_BLOBS++;
+        }
+
+        // Function to generate a blob
+        function getBlob() {
+            return `M ${WIDTH / 2} 0`
+        }
+        const blob = getBlob()
+
+        renderBlob(blob)
     </script>
 </body>
 
